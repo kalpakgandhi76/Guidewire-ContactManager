@@ -17,8 +17,8 @@ jobs:
           BB_TOKEN: ${{ secrets.BITBUCKET_TOKEN }}
         run: |
           set -e
-          # --- For Bitbucket Cloud ---
-          git clone --depth 1 "https://${BB_USER}:${BB_TOKEN}@bitbucket.org/<workspace>/<repo>.git" external-src
+          # --- For Bitbucket Cloud ---         
+          git clone --depth 1 "https://${BB_USER}:${BB_TOKEN}@bitbucket.valuemom.zeta1-andromeda.guidewire.net/scm/gwcpdev/contactmanager.git" external-src        
 
           # --- For Bitbucket Server/DC (example) ---
           # git clone --depth 1 "https://${BB_USER}:${BB_TOKEN}@bitbucket.mycompany.com/scm/PROJ/REPO.git" external-src
