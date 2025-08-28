@@ -1,0 +1,26 @@
+name: PII Scanning
+
+on:
+  workflow_dispatch:   # Manual trigger
+
+jobs:
+  Code-Scanning-Workflowt:
+    runs-on: ubuntu-latest
+    steps:
+      # Optional: checkout THIS GitHub repo first
+      - name: Checkout GitHub repo
+        uses: actions/checkout@v4
+
+      - name: Clone Bitbucket repo with token
+        env:
+          BB_USER: ${{ secrets.BITBUCKET_USERNAME }}
+          BB_TOKEN: ${{ secrets.BITBUCKET_TOKEN }}
+        run: |
+          set -e
+          # --- For Bitbucket Cloud ---
+          git clone --depth 1 "https://${BB_USER}:${BB_TOKEN}@bitbucket.org/<workspace>/<repo>.git" external-src
+
+          # --- For Bitbucket Server/DC (example) ---
+          # git clone --depth 1 "https://${BB_USER}:${BB_TOKEN}@bitbucket.mycompany.com/scm/PROJ/REPO.git" external-src
+
+          ls -la external-src
